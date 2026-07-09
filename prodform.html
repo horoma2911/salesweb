@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selling Shop</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">Selling Shop</div>
+    <div class="nav-links">
+                    <a href="index.php?action=dashboard">Dashboard</a>
+            <a href="index.php?action=products">Products</a>
+            <a href="index.php?action=sales/pos">POS</a>
+            <a href="index.php?action=sales/history">Sales</a>
+            <a href="index.php?action=reports">Reports</a>
+            <a href="index.php?action=logout">Logout</a>
+            </div>
+</nav>
+<div class="container">
+    <div class="card">
+    <h2>Add Product</h2>
+    <form method="post" action="index.php?action=products/save" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                <div class="two-col">
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" name="name" value="" required>
+            </div>
+            <div class="form-group">
+                <label>SKU</label>
+                <input type="text" name="sku" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Barcode</label>
+                <input type="text" name="barcode" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" name="category" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Brand</label>
+                <input type="text" name="brand" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="Active" selected>Active</option>
+                    <option value="Inactive" >Inactive</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Buying Price</label>
+                <input type="number" step="0.01" name="buying_price" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Selling Price</label>
+                <input type="number" step="0.01" name="selling_price" value="" required>
+            </div>
+            <div class="form-group">
+                <label>Current Stock</label>
+                <input type="number" name="stock" value="0" required>
+            </div>
+            <div class="form-group">
+                <label>Minimum Stock</label>
+                <input type="number" name="minimum_stock" value="0" required>
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input type="file" name="image">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" rows="4"></textarea>
+        </div>
+        <div class="right">
+            <a class="btn btn-secondary" href="index.php?action=products">Cancel</a>
+            <button class="btn btn-primary" type="submit">Save Product</button>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>

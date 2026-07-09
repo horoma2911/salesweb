@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: sellingshop
+    env: php
+    plan: free
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+    startCommand: |
+      php -S 0.0.0.0:$PORT -t public
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DB_PATH
+        value: /var/data/app.sqlite
+    disk:
+      name: sellingshop-data
+      mountPath: /var/data
+      sizeGB: 1

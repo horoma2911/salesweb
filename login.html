@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selling Shop</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">Selling Shop</div>
+    <div class="nav-links">
+                    <a href="index.php?action=login">Login</a>
+            </div>
+</nav>
+<div class="container">
+    <div class="card" style="max-width:460px;margin:40px auto;">
+    <h2>Sign in to Selling Shop</h2>
+    <p class="muted">Use the seeded admin account to get started.</p>
+    <form method="post" action="index.php?action=do-login">
+        <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+        </div>
+        <div class="right">
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>

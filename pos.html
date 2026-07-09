@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selling Shop</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="brand">Selling Shop</div>
+    <div class="nav-links">
+                    <a href="index.php?action=dashboard">Dashboard</a>
+            <a href="index.php?action=products">Products</a>
+            <a href="index.php?action=sales/pos">POS</a>
+            <a href="index.php?action=sales/history">Sales</a>
+            <a href="index.php?action=reports">Reports</a>
+            <a href="index.php?action=logout">Logout</a>
+            </div>
+</nav>
+<div class="container">
+    <div class="pos-grid">
+    <div class="card">
+        <div class="flex" style="justify-content:space-between;align-items:center;">
+            <div>
+                <h2>Point of Sale</h2>
+                <p class="muted">Search products, add to cart, apply discount, and complete the sale.</p>
+            </div>
+            <a class="btn btn-secondary" href="index.php?action=sales/history">Sales History</a>
+        </div>
+
+        <form method="get" action="index.php?action=sales/pos" class="form-group">
+            <input type="text" name="search" value="" placeholder="Search products">
+        </form>
+
+        <div class="product-list">
+                            <div class="product-card">
+                    <strong>UI Test Product Edited</strong><br>
+                    <span class="muted">SKU UITEST-001</span><br>
+                    <span class="muted">Stock 12</span><br>
+                    <span class="pill">$10.00</span>
+                    <form method="post" action="index.php?action=sales/add-to-cart" style="margin-top:8px;">
+                        <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                        <input type="hidden" name="product_id" value="5">
+                        <input type="number" name="quantity" value="1" min="1" style="margin-bottom:8px;">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+                            <div class="product-card">
+                    <strong>Laptop</strong><br>
+                    <span class="muted">SKU SKU-1001</span><br>
+                    <span class="muted">Stock 8</span><br>
+                    <span class="pill">$750.00</span>
+                    <form method="post" action="index.php?action=sales/add-to-cart" style="margin-top:8px;">
+                        <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                        <input type="hidden" name="product_id" value="1">
+                        <input type="number" name="quantity" value="1" min="1" style="margin-bottom:8px;">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+                            <div class="product-card">
+                    <strong>Wireless Mouse</strong><br>
+                    <span class="muted">SKU SKU-1002</span><br>
+                    <span class="muted">Stock 2</span><br>
+                    <span class="pill">$24.00</span>
+                    <form method="post" action="index.php?action=sales/add-to-cart" style="margin-top:8px;">
+                        <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                        <input type="hidden" name="product_id" value="2">
+                        <input type="number" name="quantity" value="1" min="1" style="margin-bottom:8px;">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+                            <div class="product-card">
+                    <strong>Office Chair</strong><br>
+                    <span class="muted">SKU SKU-1003</span><br>
+                    <span class="muted">Stock 5</span><br>
+                    <span class="pill">$120.00</span>
+                    <form method="post" action="index.php?action=sales/add-to-cart" style="margin-top:8px;">
+                        <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                        <input type="hidden" name="product_id" value="3">
+                        <input type="number" name="quantity" value="1" min="1" style="margin-bottom:8px;">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+                    </div>
+    </div>
+
+    <div class="card">
+        <h3>Current Cart</h3>
+        <form method="post" action="index.php?action=sales/update-cart">
+            <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+            <table class="table">
+                <thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead>
+                <tbody>
+                                </tbody>
+            </table>
+            <div class="right" style="margin-top:10px;"><button class="btn btn-secondary" type="submit">Update</button></div>
+        </form>
+
+        <div class="form-group">
+            <label>Discount</label>
+            <input type="number" step="0.01" form="checkout-form" name="discount" value="0">
+        </div>
+        <div class="form-group">
+            <label>Tax</label>
+            <input type="number" step="0.01" form="checkout-form" name="tax" value="0">
+        </div>
+        <div class="form-group">
+            <label>Payment Method</label>
+            <select form="checkout-form" name="payment_method">
+                <option value="cash">Cash</option>
+                <option value="card">Card</option>
+                <option value="transfer">Transfer</option>
+            </select>
+        </div>
+        <div class="right">
+            <a class="btn btn-secondary" href="index.php?action=sales/cancel">Cancel</a>
+            <form method="post" action="index.php?action=sales/hold" style="display:inline;">
+                <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                <button class="btn btn-warning" type="submit">Hold</button>
+            </form>
+            <form id="checkout-form" method="post" action="index.php?action=sales/checkout" style="display:inline;">
+                <input type="hidden" name="csrf_token" value="4ad87b57926072523b9bef53a2f3ff27af78e273a29b36e3e652e3a1958923d9">
+                <button class="btn btn-success" type="submit">Complete Sale</button>
+            </form>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+            <h4>Held Sales</h4>
+            <ul>
+                            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
