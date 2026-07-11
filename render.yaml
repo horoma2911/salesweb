@@ -3,17 +3,56 @@ services:
     name: sellingshop
     env: php
     plan: free
+
     buildCommand: |
       composer install --no-dev --optimize-autoloader
+      php artisan config:clear
+      php artisan cache:clear
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+
     startCommand: |
+      php artisan migrate --force
+      php artisan storage:link || true
       php -S 0.0.0.0:$PORT -t public
+
     autoDeploy: true
+
     envVars:
       - key: APP_ENV
         value: production
-      - key: DB_PATH
-        value: /var/data/app.sqlite
-    disk:
-      name: sellingshop-data
-      mountPath: /var/data
-      sizeGB: 1
+
+      - key: APP_DEBUG
+        value: "false"
+
+      - key: APP_KEY
+        generateValue: true
+
+      - key: DB_CONNECTION
+        value: pgsql
+
+      - key: DB_HOST
+        fromDatabase:
+          name: sellingshop-db
+          property: host
+
+      - key: DB_PORT
+        fromDatabase:
+          name: sellingshop-db
+          property: port
+
+      - key: DB_DATABASE
+        fromDatabase:
+          name: sellingshop-db
+          property: database
+
+      - key: DB_USERNAME
+        fromDatabase:
+          name: sellingshop-db
+          property: user
+
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: sellingshop-db
+          property: password
